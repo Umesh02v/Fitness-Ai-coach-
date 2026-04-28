@@ -1,0 +1,39 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/fitmind_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: UTC
+
+jwt:
+  secret: fitmind-super-secret-key-change-in-production-must-be-256-bits-long
+  expiration: 86400000       # 24 hours in ms
+  refresh-expiration: 604800000  # 7 days
+
+ai:
+  provider: gemini            # gemini | anthropic
+  gemini:
+    api-key: AIzaSyBKmtrC5KYmdC7D3k8HUfZgX43oQGzAbMw
+    model: gemini-1.5-flash
+    base-url: https://generativelanguage.googleapis.com/v1beta
+  anthropic:
+    api-key: YOUR_ANTHROPIC_API_KEY
+    model: claude-haiku-4-5-20251001
+    base-url: https://api.anthropic.com/v1
+
+cors:
+  allowed-origins: http://localhost:5173
